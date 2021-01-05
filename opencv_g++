@@ -1,0 +1,46 @@
+
+
+ g++ test.cpp -o testoutput -std=c++11 `pkg-config --cflags --libs opencv`
+
+
+Using CMakeLists.txt
+
+The basic structure of your CMakeLists.txt will be as follows:
+
+
+cmake_minimum_required(VERSION 3.1)
+# Enable C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+INCLUDE_DIRECTORIES( -I/usr/include/opencv )
+ADD_EXECUTABLE(main main.cpp)
+TARGET_LINK_LIBRARIES (main -lopencv_shape -lopencv_stitching -lopencv_superres -lopencv_videostab -lopencv_aruco -lopencv_bgsegm -lopencv_bioinspired -lopencv_ccalib -lopencv_datasets -lopencv_dpm -lopencv_face -lopencv_freetype -lopencv_fuzzy -lopencv_hdf -lopencv_line_descriptor -lopencv_optflow -lopencv_video -lopencv_plot -lopencv_reg -lopencv_saliency -lopencv_stereo -lopencv_structured_light -lopencv_phase_unwrapping -lopencv_rgbd -lopencv_viz -lopencv_surface_matching -lopencv_text -lopencv_ximgproc -lopencv_calib3d -lopencv_features2d -lopencv_flann -lopencv_xobjdetect -lopencv_objdetect -lopencv_ml -lopencv_xphoto -lopencv_highgui -lopencv_videoio -lopencv_imgcodecs -lopencv_photo -lopencv_imgproc -lopencv_core)
+
+
+cmake ..
+cmake --build . --config Release
+
+
+You will have to set OpenCV_DIR as shown below.
+
+
+SET(OpenCV_DIR <OpenCV_Home_Dir>/installation/OpenCV-master/lib/cmake/opencv4)
+Make sure that you replace OpenCV_Home_Dir with correct path. For example, in my case:
+
+
+SET(OpenCV_DIR /home/hp/OpenCV_installation/installation/OpenCV-master/lib/cmake/opencv4)
+Once you have made your CMakeLists.txt, follow the steps given below.
+
+
+mkdir build && cd build
+cmake ..
+cmake --build . --config Release
+This will generate your executable file in build directory.
+
+where lib installed
+pkg-config --cflags opencv
+pkg-config --libs opencv
+
+version
+pkg-config --modversion opencv
+
